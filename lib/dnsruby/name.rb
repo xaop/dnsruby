@@ -222,14 +222,14 @@ module Dnsruby
     #    p Resolv::Name.create("x.y.z").to_s #=> "x.y.z"
     # 
     def to_s(include_absolute=false)
-      ret = to_str(@labels)
+      ret = labels_to_s(@labels)
       if (@absolute && include_absolute)
         ret += "."
       end
       return ret
     end
 
-    def to_str(labels) # :nodoc: all
+    def labels_to_s(labels) # :nodoc: all
       ls =[]
       labels.each {|el| ls.push(Name.decode(el.to_s))}
       return ls.join('.')
